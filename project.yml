@@ -1,0 +1,102 @@
+name: PDFMerge
+options:
+  deploymentTarget:
+    iOS: "17.0"
+  developmentLanguage: zh-Hans
+  knownRegions: [zh-Hans, en, zh-Hant]
+settings:
+  base:
+    APP_ID: com.hgsldswk.pdfmerge
+    APP_STORE_ID: "6837369107"
+    MARKETING_VERSION: "1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    SWIFT_VERSION: "5.0"
+    CODE_SIGN_STYLE: Automatic
+targets:
+  PDFMerge:
+    type: application
+    platform: iOS
+    sources: [PDFMerge, Shared]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: $(APP_ID)
+        TARGETED_DEVICE_FAMILY: "1"
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+      configs:
+        Debug:
+          SWIFT_ACTIVE_COMPILATION_CONDITIONS: DEBUG
+        Release:
+          CODE_SIGN_STYLE: Manual
+          CODE_SIGN_IDENTITY: Apple Distribution
+          PROVISIONING_PROFILE_SPECIFIER: PDFMerge AppStore
+    info:
+      path: PDFMerge/Info.plist
+      properties:
+        CFBundleDisplayName: PDF合并
+        CFBundleDevelopmentRegion: zh-Hans
+        UILaunchScreen: {}
+        UIRequiresFullScreen: true
+        UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
+        ITSAppUsesNonExemptEncryption: false
+        APP_STORE_ID: $(APP_STORE_ID)
+        CFBundleDocumentTypes:
+          - CFBundleTypeName: PDF Merge Template
+            CFBundleTypeRole: Viewer
+            LSHandlerRank: Owner
+            LSItemContentTypes: [com.hgsldswk.pdfmerge.template]
+        UTExportedTypeDeclarations:
+          - UTTypeIdentifier: com.hgsldswk.pdfmerge.template
+            UTTypeDescription: PDF Merge Template
+            UTTypeConformsTo: [public.data]
+            UTTypeTagSpecification:
+              public.filename-extension: [pdfmergetemplate]
+  PDFMergeTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: PDFMergeTests
+        excludes: [Fixtures]
+      - path: PDFMergeTests/Fixtures
+        buildPhase: resources
+      - path: Shared
+    dependencies:
+      - target: PDFMerge
+      - sdk: StoreKitTest.framework
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: $(APP_ID).tests
+        GENERATE_INFOPLIST_FILE: YES
+        TEST_HOST: $(BUILT_PRODUCTS_DIR)/PDFMerge.app/PDFMerge
+        BUNDLE_LOADER: $(TEST_HOST)
+  PDFMergeUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources: [PDFMergeUITests]
+    dependencies:
+      - target: PDFMerge
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: $(APP_ID).uitests
+        GENERATE_INFOPLIST_FILE: YES
+        TEST_TARGET_NAME: PDFMerge
+schemes:
+  PDFMerge:
+    build:
+      targets:
+        PDFMerge: all
+        PDFMergeTests: [test]
+    run:
+      storeKitConfiguration: PDFMergeTests/Fixtures/PDFMerge.storekit
+    test:
+      config: Debug
+      targets: [PDFMergeTests]
+      environmentVariables:
+        PDFMERGE_HOSTED_TESTS: "1"
+  PDFMergeUI:
+    build:
+      targets:
+        PDFMerge: all
+        PDFMergeUITests: [test]
+    test:
+      config: Debug
+      targets: [PDFMergeUITests]
