@@ -1,0 +1,35 @@
+{
+  "identifier": "53401928",
+  "nonRenewingSubscriptions": [],
+  "products": [
+    {
+      "displayPrice": "2.99",
+      "familyShareable": false,
+      "internalID": "6517062081",
+      "localizations": [
+        {"description": "Unlock advanced PDF tools once.", "displayName": "Lifetime Upgrade", "locale": "en_US"},
+        {"description": "一次买断高级 PDF 功能", "displayName": "高级版买断", "locale": "zh_CN"},
+        {"description": "一次買斷進階 PDF 功能", "displayName": "進階版買斷", "locale": "zh_TW"}
+      ],
+      "productID": "com.hgsldswk.pdfmerge.pro",
+      "referenceName": "Lifetime Upgrade",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0",
+      "familyShareable": false,
+      "internalID": "6517062082",
+      "localizations": [
+        {"description": "Free receipt for the 30-day trial.", "displayName": "30-Day Trial", "locale": "en_US"},
+        {"description": "领取免费的 30 天试用凭证", "displayName": "30 天免费试用", "locale": "zh_CN"},
+        {"description": "領取免費的 30 天試用憑證", "displayName": "30 天免費試用", "locale": "zh_TW"}
+      ],
+      "productID": "com.hgsldswk.pdfmerge.trial",
+      "referenceName": "30-Day Trial",
+      "type": "NonConsumable"
+    }
+  ],
+  "settings": {"_failTransactionsEnabled": false, "_locale": "en_US", "_storefront": "USA"},
+  "subscriptionGroups": [],
+  "version": {"major": 3, "minor": 0}
+}
